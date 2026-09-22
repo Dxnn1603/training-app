@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<title>Mi Entrenamiento</title>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Mi Entrenamiento</h1>
+    <p id="today"></p>
+  </div>
+  <button id="installBtn" class="secondary hidden">Instalar</button>
+</header>
+
+<main>
+  <nav class="tabs">
+    <button class="tab active" data-view="home">Hoy</button>
+    <button class="tab" data-view="history">Historial</button>
+    <button class="tab" data-view="calendar">Calendario</button>
+    <button class="tab" data-view="stats">Progreso</button>
+  </nav>
+
+  <section id="home" class="view">
+    <div class="hero">
+      <div><span class="eyebrow">ENTRENAMIENTO</span><h2 id="todayTitle">Registra tu sesión</h2></div>
+      <span id="todayCount" class="badge">0 ejercicios</span>
+    </div>
+
+    <form id="exerciseForm" class="card">
+      <label>Ejercicio
+        <input id="exercise" list="exerciseList" required maxlength="60" placeholder="Ej: Press de banca">
+      </label>
+      <datalist id="exerciseList">
+        <option value="Press de banca"><option value="Press militar"><option value="Sentadilla">
+        <option value="Peso muerto"><option value="Remo con mancuerna"><option value="Curl de bíceps">
+        <option value="Extensión de tríceps"><option value="Elevaciones laterales"><option value="Zancadas">
+        <option value="Abdominales">
+      </datalist>
+
+      <div class="grid3">
+        <label>Series<input id="sets" type="number" min="1" max="50" value="3" required></label>
+        <label>Reps<input id="reps" type="number" min="1" max="200" value="10" required></label>
+        <label>Peso (kg)<input id="weight" type="number" min="0" max="500" step="0.5" value="0"></label>
+      </div>
+
+      <label>Notas <input id="notes" maxlength="200" placeholder="Opcional"></label>
+      <button class="primary" type="submit">＋ Guardar ejercicio</button>
+      <p id="formMsg" class="message" aria-live="polite"></p>
+    </form>
+
+    <div class="sectionHead"><h3>Sesión de hoy</h3><span id="sessionVolume"></span></div>
+    <div id="todayExercises" class="list"></div>
+  </section>
+
+  <section id="history" class="view hidden">
+    <div class="sectionHead"><h2>Historial</h2><button id="clearAll" class="danger secondary">Borrar todo</button></div>
+    <div id="historyList" class="list"></div>
+  </section>
+
+  <section id="calendar" class="view hidden">
+    <div class="sectionHead"><div><h2>Calendario</h2><p id="monthLabel"></p></div></div>
+    <div class="weekdays"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+    <div id="calendarGrid" class="calendar"></div>
+    <div id="selectedDay" class="card mutedBox">Toca un día para ver sus ejercicios.</div>
+  </section>
+
+  <section id="stats" class="view hidden">
+    <h2>Progreso</h2>
+    <div class="statsGrid">
+      <div class="stat"><span>Días entrenados</span><b id="statDays">0</b></div>
+      <div class="stat"><span>Ejercicios</span><b id="statExercises">0</b></div>
+      <div class="stat"><span>Series</span><b id="statSets">0</b></div>
+      <div class="stat"><span>Volumen</span><b id="statVolume">0 kg</b></div>
+    </div>
+    <div class="card">
+      <h3>Ejercicios más frecuentes</h3>
+      <div id="topExercises"></div>
+    </div>
+    <div class="card">
+      <h3>Consejos</h3>
+      <div id="advice"></div>
+    </div>
+  </section>
+</main>
+
+<footer>Los datos se guardan en este dispositivo.</footer>
+<script src="app.js"></script>
+</body>
+</html>
